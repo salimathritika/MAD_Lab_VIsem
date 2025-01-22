@@ -1,3 +1,4 @@
+//EDIT THIS TO USE INTENTS
 package com.example.l2q2;
 
 import android.os.Bundle;
