@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/textLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Type here:"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/inputField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textLabel"
+        android:layout_marginTop="10dp"
+        android:background="#FFFF99" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:layout_below="@id/inputField"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:id="@+id/okButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:layout_toRightOf="@id/cancelButton"
+        android:layout_alignTop="@id/cancelButton"
+        android:layout_marginLeft="10dp" />
+</RelativeLayout>
