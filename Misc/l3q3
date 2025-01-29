@@ -1,0 +1,256 @@
+MainActivity.java
+
+package com.example.newsapp;
+
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+import com.google.android.material.tabs.TabLayout;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
+        ViewPager viewPager = findViewById(R.id.viewPager);
+
+        // Set up the adapter
+        NewsPagerAdapter adapter = new NewsPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+
+        // Connect TabLayout with ViewPager
+        tabLayout.setupWithViewPager(viewPager);
+    }
+}
+
+
+-----------------------------------------------
+NewsPagerAdapter.java
+
+package com.example.newsapp;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+
+public class NewsPagerAdapter extends FragmentPagerAdapter {
+
+    public NewsPagerAdapter(FragmentManager fm) {
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+    }
+
+    @Override
+    public Fragment getItem(int position) {
+        switch (position) {
+            case 1:
+                return new SportsFragment();
+            case 2:
+                return new EntertainmentFragment();
+            default:
+                return new TopStoriesFragment();
+        }
+    }
+
+    @Override
+    public int getCount() {
+        return 3; // Number of tabs
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        switch (position) {
+            case 0:
+                return "Top Stories";
+            case 1:
+                return "Sports";
+            case 2:
+                return "Entertainment";
+            default:
+                return null;
+        }
+    }
+}
+
+
+---------------------------------------------------
+activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f8f9fa">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_500"
+        android:tabTextColor="#FFFFFF"
+        android:tabIndicatorColor="#FFCC00"
+        android:tabSelectedTextColor="#FFD700" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
+
+
+------------------------------------
+TopStoriesFragment.java
+
+package com.example.newsapp;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+public class TopStoriesFragment extends Fragment {
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_top_stories, container, false);
+    }
+}
+
+
+-------------------------------------------
+
+SportsFragment.java
+
+package com.example.newsapp;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+public class SportsFragment extends Fragment {
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_sports, container, false);
+    }
+}
+
+--------------------------------------------------
+EntertainmentFragment.java
+
+package com.example.newsapp;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+public class EntertainmentFragment extends Fragment {
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_entertainment, container, false);
+    }
+}
+
+----------------------------------------------------
+fragment_top_stories.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@android:color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Top Stories"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"/>
+</LinearLayout>
+
+-------------------------------------------
+fragment_sports.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@android:color/holo_blue_light">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sports News"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"/>
+</LinearLayout>
+
+
+------------------------------------------
+fragment_entertainment.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@android:color/holo_purple">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Entertainment News"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"/>
+</LinearLayout>
+
+----------------------------------
+AndroidManifest.xml
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.newsapp">
+
+    <application
+        android:allowBackup="true"
+        android:theme="@style/Theme.NewsApp">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
+
+
+----------------------------------------
+
+
+
+
+
