@@ -5,8 +5,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center"
-    android:layout_marginTop="16dp">
-
+    >
     <!-- Button for Android 1.0 -->
     <Button
         android:id="@+id/button_android_1_0"
