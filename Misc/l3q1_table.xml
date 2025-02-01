@@ -20,40 +20,40 @@
                 android:textColor="#fff"/>
         </TableRow>
 
-        <TableRow>
+        <TableRow android:id="@+id/row_open">
             <TextView android:text="Open..."
                 android:padding="10dp"/>
             <TextView android:text="Ctrl-O"
                 android:gravity="end"/>
         </TableRow>
 
-        <TableRow>
+        <TableRow android:id="@+id/row_save">
             <TextView android:text="Save..."
                 android:padding="10dp"/>
             <TextView android:text="Ctrl-S"
                 android:gravity="end"/>
         </TableRow>
 
-        <TableRow>
+        <TableRow android:id="@+id/row_save_as">
             <TextView android:text="Save As..."
                 android:padding="10dp"/>
             <TextView android:text="Ctrl-Shift-S"
                 android:gravity="end"/>
         </TableRow>
 
-        <TableRow>
+        <TableRow android:id="@+id/row_import">
             <TextView android:text="X Import..."
                 android:padding="10dp"/>
         </TableRow>
 
-        <TableRow>
+        <TableRow android:id="@+id/row_export">
             <TextView android:text="X Export..."
                 android:padding="10dp"/>
             <TextView android:text="Ctrl-E"
                 android:gravity="end"/>
         </TableRow>
 
-        <TableRow>
+        <TableRow android:id="@+id/row_quit">
             <TextView android:text="Quit"
                 android:padding="10dp"/>
         </TableRow>
