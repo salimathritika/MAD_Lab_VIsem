@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black"
+    android:padding="10dp">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1">
+
+        <TableRow>
+            <TextView
+                android:text="Hello TableLayout"
+                android:textStyle="bold"
+                android:layout_span="2"
+                android:padding="5dp"
+                android:background="#666"
+                android:textColor="#fff"/>
+        </TableRow>
+
+        <TableRow android:id="@+id/row_open">
+            <TextView android:text="Open..."
+                android:textColor="@color/white"
+                android:padding="10dp"/>
+            <TextView android:text="Ctrl-O"
+                android:textColor="@color/white"
+                android:gravity="end"/>
+        </TableRow>
+
+        <TableRow android:id="@+id/row_save">
+            <TextView android:text="Save..."
+                android:textColor="@color/white"
+                android:padding="10dp"/>
+            <TextView android:text="Ctrl-S"
+                android:textColor="@color/white"
+                android:gravity="end"/>
+        </TableRow>
+
+        <TableRow android:id="@+id/row_save_as">
+            <TextView android:text="Save As..."
+                android:textColor="@color/white"
+                android:padding="10dp"/>
+            <TextView android:text="Ctrl-Shift-S"
+                android:textColor="@color/white"
+                android:gravity="end"/>
+        </TableRow>
+
+        <TableRow android:id="@+id/row_import">
+            <TextView android:text="X Import..."
+                android:textColor="@color/white"
+                android:padding="10dp"/>
+        </TableRow>
+
+        <TableRow android:id="@+id/row_export">
+            <TextView android:text="X Export..."
+                android:textColor="@color/white"
+                android:padding="10dp"/>
+            <TextView android:text="Ctrl-E"
+                android:textColor="@color/white"
+                android:gravity="end"/>
+        </TableRow>
+
+        <TableRow android:id="@+id/row_quit">
+            <TextView android:text="Quit"
+                android:textColor="@color/white"
+                android:padding="10dp"/>
+        </TableRow>
+
+    </TableLayout>
+</LinearLayout>
