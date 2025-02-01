@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".artists">
 
     <!-- TODO: Update blank fragment layout -->
@@ -12,7 +13,7 @@
         android:layout_height="match_parent"
         android:text="This is the artists tab"
         android:gravity="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="40dp"
         />
 
