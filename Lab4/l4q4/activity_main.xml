@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/foodItem1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Burger - $5"
+                android:value="5"/>
+
+            <CheckBox
+                android:id="@+id/foodItem2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pizza - $8"
+                android:value="8"/>
+
+            <CheckBox
+                android:id="@+id/foodItem3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pasta - $7"
+                android:value="7"/>
+
+            <CheckBox
+                android:id="@+id/foodItem4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Soda - $2"
+                android:value="2"/>
+
+            <CheckBox
+                android:id="@+id/foodItem5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fries - $3"
+                android:value="3"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/submitOrderButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit Order"
+        android:layout_marginTop="20dp"/>
+</LinearLayout>
