@@ -9,15 +9,15 @@
     tools:context=".MainActivity">
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/vtype"
         android:layout_width="231dp"
         android:layout_height="48dp"
         app:layout_constraintBottom_toTopOf="@+id/rcnoval"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.371"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toEndOf="@+id/vehtype"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.721" />
+        app:layout_constraintVertical_bias="0.475" />
 
     <TextView
         android:id="@+id/vehtype"
@@ -48,7 +48,7 @@
         app:layout_constraintVertical_bias="0.254" />
 
     <EditText
-        android:id="@+id/vehnoval"
+        android:id="@+id/rcnoval"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -77,13 +77,13 @@
         app:layout_constraintVertical_bias="0.353" />
 
     <EditText
-        android:id="@+id/rcnoval"
+        android:id="@+id/vehnoval"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Enter Vehicle Number"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/vehnoval"
+        app:layout_constraintBottom_toTopOf="@+id/rcnoval"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.435"
         app:layout_constraintStart_toEndOf="@+id/vehno"
@@ -106,10 +106,10 @@
         app:layout_constraintVertical_bias="0.043" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
