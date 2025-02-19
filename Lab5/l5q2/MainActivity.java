@@ -21,6 +21,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.text.DateFormat;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -106,6 +107,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetFields();
+            }
+        });
     }
 
     private void updateMode() {
@@ -115,4 +123,18 @@ public class MainActivity extends AppCompatActivity {
             type="One Way Ticket";
         }
     }
+    private void resetFields() {
+        src.setSelection(0);
+        dst.setSelection(0);
+
+        Calendar currentDate = Calendar.getInstance();
+        dp.updateDate(
+                currentDate.get(Calendar.YEAR),
+                currentDate.get(Calendar.MONTH),
+                currentDate.get(Calendar.DAY_OF_MONTH)
+        );
+
+        tog.setChecked(false);
+    }
 }
+
