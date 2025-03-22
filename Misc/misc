@@ -1,6 +1,6 @@
 mainactivity.java
 
-package com.example.xyzfitnesscenter;
+package com.example.l6q1;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -81,14 +81,14 @@ activity_main.xml
             android:id="@+id/home_icon"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/home_icon"
+            android:src="@drawable/img"
             android:contentDescription="Home" />
 
         <ImageView
             android:id="@+id/about_icon"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/about_icon"
+            android:src="@drawable/img_1"
             android:contentDescription="About Us"
             android:layout_marginLeft="20dp" />
 
@@ -96,7 +96,7 @@ activity_main.xml
             android:id="@+id/contact_icon"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/contact_icon"
+            android:src="@drawable/img_2"
             android:contentDescription="Contact Us"
             android:layout_marginLeft="20dp" />
     </LinearLayout>
@@ -105,24 +105,25 @@ activity_main.xml
 menu resource file
 
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/workout_plans"
         android:title="Workout Plans"
-        android:icon="@drawable/ic_workout"
-        android:showAsAction="always" />
-    
+        android:icon="@drawable/img_3"
+        app:showAsAction="always" />
+
     <item
         android:id="@+id/trainers"
         android:title="Trainers"
-        android:icon="@drawable/ic_trainers"
-        android:showAsAction="always" />
-    
+        android:icon="@drawable/img_4"
+        app:showAsAction="always" />
+
     <item
         android:id="@+id/membership"
         android:title="Membership"
-        android:icon="@drawable/ic_membership"
-        android:showAsAction="always" />
+        android:icon="@drawable/img_5"
+        app:showAsAction="always" />
 </menu>
 ------------------------------------------------------
 
