@@ -178,8 +178,17 @@ context menu
 
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/option_open" android:title="Open App"/>
-    <item android:id="@+id/option_uninstall" android:title="Uninstall"/>
-    <item android:id="@+id/option_details" android:title="View Details"/>
-    <item android:id="@+id/option_permissions" android:title="Check Permissions"/>
+    <item
+        android:id="@+id/option_open"
+        android:title="Open App" />
+    <item
+        android:id="@+id/option_uninstall"
+        android:title="Uninstall" />
+    <item
+        android:id="@+id/option_details"
+        android:title="View Details" />
+    <item
+        android:id="@+id/option_permissions"
+        android:title="Check Permissions" />
 </menu>
+
