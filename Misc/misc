@@ -1,0 +1,215 @@
+mainactivity.java
+
+package com.example.xyzfitnesscenter;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Set up icon navigation
+        ImageView homeIcon = findViewById(R.id.home_icon);
+        ImageView aboutIcon = findViewById(R.id.about_icon);
+        ImageView contactIcon = findViewById(R.id.contact_icon);
+
+        homeIcon.setOnClickListener(v -> Toast.makeText(this, "Home Page", Toast.LENGTH_SHORT).show());
+        aboutIcon.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, AboutActivity.class)));
+        contactIcon.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ContactActivity.class)));
+    }
+
+    // Create the options menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+    // Handle menu item clicks
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.workout_plans) {
+            startActivity(new Intent(this, WorkoutPlansActivity.class));
+            return true;
+        } else if (id == R.id.trainers) {
+            startActivity(new Intent(this, TrainersActivity.class));
+            return true;
+        } else if (id == R.id.membership) {
+            startActivity(new Intent(this, MembershipActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+}
+---------------------------------------------------------------------
+activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to XYZ Fitness Center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:paddingBottom="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/home_icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/home_icon"
+            android:contentDescription="Home" />
+
+        <ImageView
+            android:id="@+id/about_icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/about_icon"
+            android:contentDescription="About Us"
+            android:layout_marginLeft="20dp" />
+
+        <ImageView
+            android:id="@+id/contact_icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/contact_icon"
+            android:contentDescription="Contact Us"
+            android:layout_marginLeft="20dp" />
+    </LinearLayout>
+</LinearLayout>
+------------------------------------------------------------------------
+menu resource file
+
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/workout_plans"
+        android:title="Workout Plans"
+        android:icon="@drawable/ic_workout"
+        android:showAsAction="always" />
+    
+    <item
+        android:id="@+id/trainers"
+        android:title="Trainers"
+        android:icon="@drawable/ic_trainers"
+        android:showAsAction="always" />
+    
+    <item
+        android:id="@+id/membership"
+        android:title="Membership"
+        android:icon="@drawable/ic_membership"
+        android:showAsAction="always" />
+</menu>
+------------------------------------------------------
+
+WorkoutPlansActivity.java
+package com.example.xyzfitnesscenter;
+
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+public class WorkoutPlansActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_workout_plans);
+
+        ListView listView = findViewById(R.id.listView);
+        String[] workouts = {"Weight Loss", "Cardio", "Strength Training", "Yoga"};
+        
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, workouts);
+        listView.setAdapter(adapter);
+    }
+}
+---------------------------------------------------------------
+activity_workout.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
+--------------------------------------------------------------
+
+package com.example.xyzfitnesscenter;
+
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import android.widget.ListView;
+
+public class TrainersActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_trainers);
+    }
+}
+----------------------------------------------------------------
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/trainer1"
+        android:contentDescription="Trainer 1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="John Doe - Strength Training" />
+</LinearLayout>
+----------------------------------------------------------
+
+package com.example.xyzfitnesscenter;
+
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import android.widget.TextView;
+
+public class MembershipActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_membership);
+
+        TextView textView = findViewById(R.id.membershipDetails);
+        textView.setText("Basic: $30/month\nPremium: $50/month\nElite: $80/month");
+    }
+}
+-----------------------------------------------
