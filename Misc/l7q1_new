@@ -1,0 +1,185 @@
+MainActivity.java
+
+package com.example.appmanager;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.PopupMenu;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
+    private AppAdapter appAdapter;
+    private List<AppInfo> appList;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        loadInstalledApps();
+    }
+
+    private void loadInstalledApps() {
+        PackageManager pm = getPackageManager();
+        appList = new ArrayList<>();
+
+        List<PackageInfo> packages = pm.getInstalledPackages(0);
+        for (PackageInfo packageInfo : packages) {
+            ApplicationInfo appInfo = packageInfo.applicationInfo;
+            AppInfo app = new AppInfo(
+                    appInfo.loadLabel(pm).toString(),
+                    appInfo.packageName,
+                    appInfo.loadIcon(pm),
+                    (appInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0
+            );
+            appList.add(app);
+        }
+
+        appAdapter = new AppAdapter(this, appList);
+        recyclerView.setAdapter(appAdapter);
+    }
+
+    public void showPopupMenu(View view, AppInfo appInfo) {
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        MenuInflater inflater = popupMenu.getMenuInflater();
+        inflater.inflate(R.menu.app_options_menu, popupMenu.getMenu());
+
+        popupMenu.setOnMenuItemClickListener(item -> handleMenuClick(item, appInfo));
+        popupMenu.show();
+    }
+
+    private boolean handleMenuClick(MenuItem item, AppInfo appInfo) {
+        switch (item.getItemId()) {
+            case R.id.option_open:
+                openApp(appInfo.packageName);
+                return true;
+            case R.id.option_uninstall:
+                uninstallApp(appInfo.packageName);
+                return true;
+            case R.id.option_details:
+                showAppDetails(appInfo.packageName);
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    private void openApp(String packageName) {
+        Intent intent = getPackageManager().getLaunchIntentForPackage(packageName);
+        if (intent != null) {
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Cannot open this app", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void uninstallApp(String packageName) {
+        Intent intent = new Intent(Intent.ACTION_DELETE);
+        intent.setData(Uri.parse("package:" + packageName));
+        startActivity(intent);
+    }
+
+    private void showAppDetails(String packageName) {
+        Intent intent = new Intent(this, AppDetailsActivity.class);
+        intent.putExtra("PACKAGE_NAME", packageName);
+        startActivity(intent);
+    }
+}
+--------------------------------------------------------------------------------
+AppDetailsActivity.java
+
+package com.example.appmanager;
+
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class AppDetailsActivity extends AppCompatActivity {
+
+    private TextView detailsTextView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_app_details);
+
+        detailsTextView = findViewById(R.id.detailsTextView);
+        String packageName = getIntent().getStringExtra("PACKAGE_NAME");
+
+        showAppDetails(packageName);
+    }
+
+    private void showAppDetails(String packageName) {
+        try {
+            PackageManager pm = getPackageManager();
+            PackageInfo packageInfo = pm.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
+
+            StringBuilder details = new StringBuilder();
+            details.append("Package: ").append(packageName).append("\n")
+                    .append("Version: ").append(packageInfo.versionName).append("\n")
+                    .append("Permissions:\n");
+
+            if (packageInfo.requestedPermissions != null) {
+                for (String permission : packageInfo.requestedPermissions) {
+                    details.append(permission).append("\n");
+                }
+            } else {
+                details.append("No special permissions.");
+            }
+
+            detailsTextView.setText(details.toString());
+
+        } catch (Exception e) {
+            detailsTextView.setText("Error fetching details.");
+        }
+    }
+}
+------------------------------------------------------------------
+app_options_menu.xml
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/option_open" android:title="Open"/>
+    <item android:id="@+id/option_uninstall" android:title="Uninstall"/>
+    <item android:id="@+id/option_details" android:title="View Details"/>
+</menu>
+---------------------------------------------
+activity_app_details.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/detailsTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"/>
+</LinearLayout>
+---------------------------------------------------
