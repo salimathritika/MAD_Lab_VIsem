@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">l7q3</string>
+    <string name="digital_transformation_text">
+        Digital transformation refers to the integration of digital technology into all areas of a business,
+        fundamentally changing how organizations operate and deliver value to customers. It involves a cultural
+        shift that requires organizations to continually challenge the status quo, experiment, and become comfortable
+        with failure. Digital transformation encompasses cloud computing, artificial intelligence, big data analytics,
+        and automation to enhance efficiency and customer experience.
+    </string>
 </resources>
