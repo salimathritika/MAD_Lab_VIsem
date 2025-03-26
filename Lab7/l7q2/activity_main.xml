@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/white"
+    android:padding="20dp">
+
+    <!-- Icon to Open Menu -->
+
+    <!-- Image Display -->
+    <ImageView
+        android:id="@+id/menu_icon"
+        android:layout_width="193dp"
+        android:layout_height="310dp"
+        android:clickable="true"
+        android:contentDescription="Menu Icon"
+        android:focusable="true"
+        android:padding="10dp"
+        android:src="@drawable/img" />
+
+    <ImageView
+        android:id="@+id/display_image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>
